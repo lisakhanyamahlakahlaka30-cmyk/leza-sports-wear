@@ -1,178 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leza Sports Wear</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leza Sports Wear | Khalakakhaaaa Laduma</title>
 
 <style>
-body { margin:0; font-family: Arial, sans-serif; background:#f8f8f8; }
+  body { margin:0; font-family: Arial, sans-serif; background:#f8f8f8; }
+  header { background:#000; color:#fff; text-align:center; padding:18px 10px; }
+  header h1 { margin:0; letter-spacing: 1px; }
+  header p { margin:6px 0 0; color:#e10600; font-weight:bold; }
 
-header { background:#000; color:#fff; text-align:center; padding:20px; }
-header h1 { margin:0; }
-header p { margin:6px 0 0; color:#e10600; font-weight:bold; }
+  nav {
+    background:#e10600;
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    padding:12px 10px;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  nav a {
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    padding:8px 10px;
+    border-radius:8px;
+  }
+  nav a:hover { background: rgba(255,255,255,0.15); }
 
-nav { background:#e10600; text-align:center; padding:15px; }
-nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
+  .nav-right{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
 
-.hero{
-background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-url("Leza_Website_Images/background%20image%20(2).jpeg") center/cover no-repeat;
-color:white;
-text-align:center;
-padding:120px 20px;
-}
+  .cart-btn{
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:9px 12px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .badge{
+    background:#e10600;
+    color:#fff;
+    padding:2px 8px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:bold;
+  }
 
-.hero h2 { font-size:40px; margin-bottom:10px; }
-.hero p { font-size:18px; }
+  .hero{
+    background:
+      linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
+      url("back_ground_images/back_ground_images.jpg") center/cover no-repeat;
+    color:#fff;
+    text-align:center;
+    padding:110px 16px;
+  }
+  .hero h2 { font-size:38px; margin:0 0 10px; }
+  .hero p { font-size:17px; margin:0 0 18px; line-height: 1.4; }
 
-.section { padding:60px 20px; text-align:center; }
+  .button{
+    display:inline-block;
+    margin-top:12px;
+    padding:10px 16px;
+    background:#e10600;
+    color:#fff;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+  }
+  .button:hover{ filter: brightness(1.06); }
 
-.products { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+  .section { padding:56px 14px; text-align:center; }
 
-.card {
-background:#fff;
-width:260px;
-padding:20px;
-border-radius:12px;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
-}
+  .products-wrap{ max-width:1100px; margin:0 auto; }
+  .products{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap:18px;
+    margin-top:18px;
+    text-align:left;
+  }
 
-.card img {
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:10px;
-}
+  .card{
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.10);
+    padding:14px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+    box-shadow:0 12px 22px rgba(0,0,0,0.16);
+  }
+  .pimg{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+  }
+  .meta{ margin-top:10px; }
+  .meta h3{ margin:0 0 6px; }
+  .price{ margin:0 0 10px; font-weight:bold; }
 
-.button{
-display:inline-block;
-margin-top:15px;
-padding:10px 20px;
-background:#e10600;
-color:#fff;
-text-decoration:none;
-border-radius:5px;
-}
+  .row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  }
 
-.gallery {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 16px;
-margin-top: 20px;
-}
+  /* Cart Drawer */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:none;
+    z-index:80;
+  }
+  .drawer{
+    position:fixed;
+    top:0;
+    right:-420px;
+    width:420px;
+    max-width:92vw;
+    height:100vh;
+    background:#fff;
+    z-index:90;
+    box-shadow:-10px 0 25px rgba(0,0,0,0.2);
+    transition:right .25s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .drawer.open{ right:0; }
+  .overlay.show{ display:block; }
 
-.gallery img {
-width: 100%;
-height: 220px;
-object-fit: cover;
-border-radius: 12px;
-box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-}
+  .drawer-header{
+    padding:14px;
+    border-bottom:1px solid #eee;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .close-btn{
+    background:#000;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:8px 12px;
+    cursor:pointer;
+    font-weight:bold;
+  }
 
-.delivery { background:#000; color:#fff; padding:50px 20px; }
+  .drawer-body{
+    padding:14px;
+    overflow:auto;
+    flex:1;
+  }
 
-footer { background:#111; color:#fff; text-align:center; padding:20px; }
+  .cart-item{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #f0f0f0;
+  }
+  .cart-item img{
+    width:64px;
+    height:64px;
+    border-radius:10px;
+    object-fit:cover;
+  }
+  .ci-title{ font-weight:bold; margin:0 0 4px; }
+  .ci-sub{ margin:0; font-size:13px; color:#444; }
 
-@media(max-width:768px){
-.products{ flex-direction:column; align-items:center; }
-}
+  .qty-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+  }
+  .qty-btn{
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    background:#f7f7f7;
+    cursor:pointer;
+    font-weight:bold;
+  }
+  .remove-btn{
+    margin-left:auto;
+    border:none;
+    background:transparent;
+    color:#e10600;
+    cursor:pointer;
+    font-weight:bold;
+  }
+
+  .drawer-footer{
+    border-top:1px solid #eee;
+    padding:14px;
+    background:#fff;
+  }
+  .totals{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    font-weight:bold;
+  }
+  .small-note{ font-size:12px; color:#555; margin:8px 0 0; }
+
+  .delivery{ background:#000; color:#fff; padding:50px 14px; text-align:center; }
+  footer{ background:#111; color:#fff; text-align:center; padding:18px 10px; }
+
+  @media (max-width:520px){
+    .hero h2{ font-size:30px; }
+  }
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>LEZA SPORTS WEAR</h1>
-<p>Halakasha Laduma ⚽</p>
+  <h1>LEZA SPORTS WEAR</h1>
+  <p>Khalakakhaaaa Laduma ⚽</p>
 </header>
 
 <nav>
-<a href="#home">Home</a>
-<a href="#products">Products</a>
-<a href="#boots-gallery">Boots Gallery</a>
-<a href="#delivery">Delivery</a>
-<a href="#contact">Contact</a>
+  <a href="#home">Home</a>
+  <a href="#products">Shop</a>
+  <a href="#delivery">Delivery</a>
+  <a href="#contact">Contact</a>
+
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">
+      Cart <span class="badge" id="cartCount">0</span>
+    </button>
+  </div>
 </nav>
 
 <section class="hero" id="home">
-<h2>Performance Meets Passion</h2>
-<p>Premium Soccer Boots, Sneakers, T-Shirts & Track Suits</p>
-<a href="https://wa.me/27823546157" class="button">Order on WhatsApp</a>
+  <h2>Performance Meets Passion</h2>
+  <p>Premium Soccer Boots, Sneakers, T-Shirts & Track Suits. Payment discussed on WhatsApp.</p>
+  <button class="button" onclick="openCart()">View Cart</button>
 </section>
 
 <section class="section" id="products">
-<h2>Our Products</h2>
+  <div class="products-wrap">
+    <h2>Shop Products</h2>
+    <p>Add items to your cart, then checkout on WhatsApp.</p>
 
-<div class="products">
-
-<div class="card">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(3).JPG">
-<h3>Soccer Boots</h3>
-<p><strong>R1900</strong></p>
-<a href="https://wa.me/27823546157" class="button">Order Now</a>
-</div>
-
-<div class="card">
-<img src="Leza_Website_Images/sneakers.jpg">
-<h3>Sneakers</h3>
-<p><strong>R1000</strong></p>
-<a href="https://wa.me/27823546157" class="button">Order Now</a>
-</div>
-
-<div class="card">
-<img src="Leza_Website_Images/soccer_tshirt.jpg%20(8).JPG">
-<h3>Soccer T-Shirt</h3>
-<p><strong>R950</strong></p>
-<a href="https://wa.me/27823546157" class="button">Order Now</a>
-</div>
-
-<div class="card">
-<img src="Leza_Website_Images/tracksuit.jpg">
-<h3>Track Suit</h3>
-<p><strong>R1600</strong></p>
-<a href="https://wa.me/27823546157" class="button">Order Now</a>
-</div>
-
-</div>
-</section>
-
-<section class="section" id="boots-gallery">
-<h2>Soccer Boots Gallery</h2>
-
-<div class="gallery">
-<img src="Leza_Website_Images/soccer_boots.jpg">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(2).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(3).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(4).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(5).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(12).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(13).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(14).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(15).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(16).JPG">
-<img src="Leza_Website_Images/soccer_boots.jpg%20(17).JPG">
-</div>
-
+    <div class="products" id="productGrid"></div>
+  </div>
 </section>
 
 <section class="delivery" id="delivery">
-<h2>Delivery Information</h2>
-<p>📍 Based in Port Elizabeth</p>
-<p>🚚 We deliver nationwide across South Africa</p>
+  <h2>Delivery Information</h2>
+  <p>📍 Based in Port Elizabeth</p>
+  <p>🚚 We deliver nationwide across South Africa</p>
+  <p>Payment and delivery details will be confirmed on WhatsApp.</p>
 </section>
 
 <section class="section" id="contact">
-<h2>Contact Us</h2>
-<p>📞 082 354 6157</p>
-<p>📍 Port Elizabeth, South Africa</p>
-<a href="https://wa.me/27823546157" class="button">Chat With Us</a>
+  <h2>Contact Us</h2>
+  <p>📞 082 354 6157</p>
+  <p>📍 Port Elizabeth, South Africa</p>
+  <a class="button" href="https://wa.me/27823546157" target="_blank" rel="noopener">Chat on WhatsApp</a>
 </section>
 
 <footer>
-<p>© 2026 Leza Sports Wear</p>
+  <p>© 2026 Leza Sports Wear</p>
+  <p>Performance • Style • Passion</p>
 </footer>
+
+<!-- Cart Drawer -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <strong>Your Cart</strong>
+    <button class="close-btn" onclick="closeCart()">Close</button>
+  </div>
+
+  <div class="drawer-body" id="cartItems">
+    <!-- items here -->
+  </div>
+
+  <div class="drawer-footer">
+    <div class="totals">
+      <span>Total</span>
+      <span id="cartTotal">R0</span>
+    </div>
+    <button class="button" style="width:100%;" onclick="checkoutWhatsApp()">Checkout on WhatsApp</button>
+    <p class="small-note">No payment on website. We confirm payment & delivery on WhatsApp.</p>
+  </div>
+</div>
+
+<script>
+  const WHATSAPP_NUMBER = "27823546157"; // your WhatsApp
+
+  // ✅ 16 PRODUCTS (you can change names/prices anytime)
+  // IMPORTANT: image paths must match your GitHub folders exactly.
+  const products = [
+    // 6 Boots (from Leza_Website_Images)
+    { id:"b1", name:"Soccer Boots (Style 1)", price:1900, image:"Leza_Website_Images/soccer_boots.jpg" },
+    { id:"b2", name:"Soccer Boots (Style 2)", price:1900, image:"Leza_Website_Images/soccer_boots.jpg%20(2).JPG" },
+    { id:"b3", name:"Soccer Boots (Style 3)", price:1900, image:"Leza_Website_Images/soccer_boots.jpg%20(3).JPG" },
+    { id:"b4", name:"Soccer Boots (Style 4)", price:1900, image:"Leza_Website_Images/soccer_boots.jpg%20(4).JPG" },
+    { id:"b5", name:"Soccer Boots (Style 5)", price:1900, image:"Leza_Website_Images/soccer_boots.jpg%20(5).JPG" },
+    { id:"b6", name:"Soccer Boots (Style 6)", price:1900, image:"Leza_Website_Images/soccer_boots.jpg%20(12).JPG" },
+
+    // 6 T-Shirts (from Leza_Website_Images)
+    { id:"t1", name:"Soccer T-Shirt (Design 1)", price:950, image:"Leza_Website_Images/soccer_tshirt.jpg.JPG" },
+    { id:"t2", name:"Soccer T-Shirt (Design 2)", price:950, image:"Leza_Website_Images/soccer_tshirt.jpg%20(2).JPG" },
+    { id:"t3", name:"Soccer T-Shirt (Design 3)", price:950, image:"Leza_Website_Images/soccer_tshirt.jpg%20(3).JPG" },
+    { id:"t4", name:"Soccer T-Shirt (Design 4)", price:950, image:"Leza_Website_Images/soccer_tshirt.jpg%20(4).JPG" },
+    { id:"t5", name:"Soccer T-Shirt (Design 5)", price:950, image:"Leza_Website_Images/soccer_tshirt.jpg%20(5).JPG" },
+    { id:"t6", name:"Soccer T-Shirt (Design 6)", price:950, image:"Leza_Website_Images/soccer_tshirt.jpg%20(6).JPG" },
+
+    // 2 Gloves (from goal_keeper_gloves_and_soccer_balls)
+    { id:"g1", name:"Goal Keeper Gloves", price:1200, image:"goal_keeper_gloves_and_soccer_balls/goal_keeper_gloves.jpeg" },
+    { id:"g2", name:"Goal Keeper Gloves (Style 2)", price:1200, image:"goal_keeper_gloves_and_soccer_balls/goal_keeper_gloves%20(2).jpeg" },
+
+    // 2 Soccer Balls (from goal_keeper_gloves_and_soccer_balls)
+    { id:"s1", name:"Soccer Ball", price:350, image:"goal_keeper_gloves_and_soccer_balls/soccer_balls.jpeg" },
+    { id:"s2", name:"Soccer Ball (Style 2)", price:350, image:"goal_keeper_gloves_and_soccer_balls/soccer_balls%20(2).jpeg" }
+  ];
+
+  // localStorage cart
+  function loadCart(){
+    return JSON.parse(localStorage.getItem("leza_cart") || "[]");
+  }
+  function saveCart(cart){
+    localStorage.setItem("leza_cart", JSON.stringify(cart));
+  }
+
+  function addToCart(productId){
+    const cart = loadCart();
+    const p = products.find(x => x.id === productId);
+    if(!p) return;
+
+    const existing = cart.find(x => x.id === productId);
+    if(existing){
+      existing.qty += 1;
+    } else {
+      cart.push({ id:p.id, name:p.name, price:p.price, image:p.image, qty:1 });
+    }
+    saveCart(cart);
+    renderCart();
+    openCart();
+  }
+
+  function changeQty(productId, delta){
+    const cart = loadCart();
+    const item = cart.find(x => x.id === productId);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty <= 0){
+      const idx = cart.findIndex(x => x.id === productId);
+      cart.splice(idx, 1);
+    }
+    saveCart(cart);
+    renderCart();
+  }
+
+  function removeItem(productId){
+    const cart = loadCart().filter(x => x.id !== productId);
+    saveCart(cart);
+    renderCart();
+  }
+
+  function formatRand(n){
+    return "R" + n.toLocaleString("en-ZA");
+  }
+
+  function getBaseUrl(){
+    // Works on GitHub Pages like: https://username.github.io/leza-sports-wear/
+    const path = window.location.pathname;
+    const basePath = path.endsWith("/") ? path : path.replace(/\/[^\/]*$/, "/");
+    return window.location.origin + basePath;
+  }
+
+  function checkoutWhatsApp(){
+    const cart = loadCart();
+    if(!cart.length){
+      alert("Your cart is empty.");
+      return;
+    }
+
+    const baseUrl = getBaseUrl();
+    let total = 0;
+
+    let msg = "LEZA SPORTS WEAR ORDER%0A";
+    msg += "----------------------------%0A";
+
+    cart.forEach((item, i) => {
+      const lineTotal = item.price * item.qty;
+      total += lineTotal;
+
+      const imgLink = baseUrl + item.image;
+
+      msg += `${i+1}) ${item.name}%0A`;
+      msg += `Qty: ${item.qty}%0A`;
+      msg += `Price: R${item.price}%0A`;
+      msg += `Line Total: R${lineTotal}%0A`;
+      msg += `Image: ${imgLink}%0A`;
+      msg += "----------------------------%0A";
+    });
+
+    msg += `TOTAL: R${total}%0A%0A`;
+    msg += "Delivery Address: ___________________%0A";
+    msg += "City/Town: ___________________%0A";
+    msg += "Preferred Delivery: Courier / Paxi / Pickup%0A%0A";
+    msg += "Hi, I would like to place this order. Payment will be discussed here.";
+
+    const link = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+    window.open(link, "_blank");
+  }
+
+  function openCart(){
+    document.getElementById("overlay").classList.add("show");
+    document.getElementById("drawer").classList.add("open");
+  }
+  function closeCart(){
+    document.getElementById("overlay").classList.remove("show");
+    document.getElementById("drawer").classList.remove("open");
+  }
+
+  function renderProducts(){
+    const grid = document.getElementById("productGrid");
+    grid.innerHTML = "";
+
+    products.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img class="pimg" src="${p.image}" alt="${p.name}">
+        <div class="meta">
+          <h3>${p.name}</h3>
+          <p class="price">${formatRand(p.price)}</p>
+          <div class="row">
+            <button class="button" onclick="addToCart('${p.id}')">Add to Cart</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderCart(){
+    const cart = loadCart();
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+
+    let count = 0;
+    let total = 0;
+
+    cartItems.innerHTML = "";
+
+    if(!cart.length){
+      cartItems.innerHTML = `<p>Your cart is empty. Add products from the shop.</p>`;
+    } else {
+      cart.forEach(item => {
+        count += item.qty;
+        total += item.price * item.qty;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <p class="ci-title">${item.name}</p>
+            <p class="ci-sub">${formatRand(item.price)} each</p>
+
+            <div class="qty-row">
+              <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+              <strong>${item.qty}</strong>
+              <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+
+              <button class="remove-btn" onclick="removeItem('${item.id}')">Remove</button>
+            </div>
+          </div>
+        `;
+        cartItems.appendChild(div);
+      });
+    }
+
+    cartCount.textContent = count;
+    cartTotal.textContent = formatRand(total);
+  }
+
+  // Init
+  renderProducts();
+  renderCart();
+</script>
 
 </body>
 </html>
-
