@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Leza Sports Wear | Halakasha Laduma</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leza Sports Wear</title>
 
 <style>
 body { margin:0; font-family: Arial, sans-serif; background:#f8f8f8; }
@@ -16,71 +16,66 @@ nav { background:#e10600; text-align:center; padding:15px; }
 nav a { color:#fff; margin:0 15px; text-decoration:none; font-weight:bold; }
 
 .hero{
-  background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url("Leza_Website_Images/background%20image%20(2).jpeg") center/cover no-repeat;
-  color:#fff;
-  text-align:center;
-  padding:100px 20px;
+background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+url("Leza_Website_Images/background%20image%20(2).jpeg") center/cover no-repeat;
+color:white;
+text-align:center;
+padding:120px 20px;
 }
 
-.hero h2 { font-size:40px; margin:0 0 10px; }
-.hero p { font-size:18px; margin:0 0 18px; }
+.hero h2 { font-size:40px; margin-bottom:10px; }
+.hero p { font-size:18px; }
 
 .section { padding:60px 20px; text-align:center; }
 
 .products { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
 
 .card {
-  background:#fff;
-  width:260px;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.1);
-  text-align:left;
+background:#fff;
+width:260px;
+padding:20px;
+border-radius:12px;
+box-shadow:0 6px 15px rgba(0,0,0,0.1);
 }
 
-.card h3 { margin:10px 0 6px; }
-.card p { margin:6px 0; }
-
-.pimg{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:10px;
+.card img {
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
 }
 
 .button{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  background:#e10600;
-  color:#fff;
-  text-decoration:none;
-  border-radius:5px;
+display:inline-block;
+margin-top:15px;
+padding:10px 20px;
+background:#e10600;
+color:#fff;
+text-decoration:none;
+border-radius:5px;
+}
+
+.gallery {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 16px;
+margin-top: 20px;
+}
+
+.gallery img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+border-radius: 12px;
+box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
 .delivery { background:#000; color:#fff; padding:50px 20px; }
 
 footer { background:#111; color:#fff; text-align:center; padding:20px; }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-}
-
 @media(max-width:768px){
-  .products{ flex-direction:column; align-items:center; }
+.products{ flex-direction:column; align-items:center; }
 }
 </style>
 </head>
@@ -112,28 +107,28 @@ footer { background:#111; color:#fff; text-align:center; padding:20px; }
 <div class="products">
 
 <div class="card">
-<img class="pimg" src="Leza_Website_Images/soccer_boots.jpg%20(3).JPG">
+<img src="Leza_Website_Images/soccer_boots.jpg%20(3).JPG">
 <h3>Soccer Boots</h3>
 <p><strong>R1900</strong></p>
 <a href="https://wa.me/27823546157" class="button">Order Now</a>
 </div>
 
 <div class="card">
-<img class="pimg" src="Leza_Website_Images/sneakers.jpg">
+<img src="Leza_Website_Images/sneakers.jpg">
 <h3>Sneakers</h3>
 <p><strong>R1000</strong></p>
 <a href="https://wa.me/27823546157" class="button">Order Now</a>
 </div>
 
 <div class="card">
-<img class="pimg" src="Leza_Website_Images/soccer_tshirt.jpg%20(8).JPG">
+<img src="Leza_Website_Images/soccer_tshirt.jpg%20(8).JPG">
 <h3>Soccer T-Shirt</h3>
 <p><strong>R950</strong></p>
 <a href="https://wa.me/27823546157" class="button">Order Now</a>
 </div>
 
 <div class="card">
-<img class="pimg" src="Leza_Website_Images/tracksuit.jpg">
+<img src="Leza_Website_Images/tracksuit.jpg">
 <h3>Track Suit</h3>
 <p><strong>R1600</strong></p>
 <a href="https://wa.me/27823546157" class="button">Order Now</a>
